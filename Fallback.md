@@ -79,7 +79,7 @@ The "receive" function is a special function in Solidity that is automatically e
 
 In the receive function, the owner is updated with msg.sender only if the amount of wei sent with the transaction is greater than 0, and the total contribution made by msg.sender in the contributions mapping is greater than the one made by the current owner. 
 
-
+##### STEPS TO EXPLOIT
 1. We need to first contribute a small amount of ether(in wei) to the contract;
 
 ```
