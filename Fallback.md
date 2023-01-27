@@ -88,7 +88,7 @@ In the receive function, the owner is updated with msg.sender only if the amount
 
 2. Activate the receive function by sending ether to the contract;
 
-```solidity
+```
    await sendTransaction({from: player, value: toWei("0.0004"), to: instance, data: ""})
 ```
 
