@@ -84,7 +84,7 @@ In the receive function, the owner is updated with msg.sender only if the amount
 
 ```
    await contract.contribute({from: player, value:toWei("0.0004")})
-``
+```
 
 2. Activate the receive function by sending ether to the contract;
 
