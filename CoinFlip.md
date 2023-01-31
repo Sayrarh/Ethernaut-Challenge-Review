@@ -65,7 +65,7 @@ There is no real native randomness in the blockchain and all randomness is pseud
 ```solidity
 contract HackCoinFlip{
     CoinFlip immutable coinflipContract;
-    uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+    uint256 constant FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
     constructor ( CoinFlip _coinflipContract){
         coinflipContract = CoinFlip(_coinflipContract);

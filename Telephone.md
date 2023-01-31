@@ -33,8 +33,12 @@ function changeOwner(address _owner) public {
     }
   }
 ```
-tx.origin will always return the address that have created a transaction <br/>
-msg.sender will return the address who made the last external call.     Who sends or invoke a function. <br/>
+
+This function wants the tx.origin only to call the function, but shouldn't call it directly(i.e as msg.sender) for the function to pass.
+<br/>
+<b>"tx.origin" </b> will always return the address that have created/originates a transaction <br/>
+
+<b>"msg.sender"</b> will return the address who made the last external call. Who sends or current account that invokes a function <br/>
 
 Here, the "tx.origin" check in the "changeOwner" function is not a proper security measure as it can be bypassed by malicious contracts.
 It's recommended to avoid using tx.origin in smart contract development and instead use a more secure alternative, such as msg.sender.
