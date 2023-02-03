@@ -28,6 +28,16 @@ contract Token {
   }
 }
 ```
+### Gas Optimization
+
+```solidity
+ uint public totalSupply;
+
+ constructor(uint _initialSupply) public {
+    balances[msg.sender] = totalSupply = _initialSupply;
+  }
+```
+The total supply could have been declared as 'immutable' because is only initialized in the contract, and it is never updated.
 
 ### CODE VUNERABILITIES
 
@@ -51,3 +61,5 @@ function transfer(address _to, uint _value) public returns (bool) {
 
 
 2. Reentrancy: To prevent reentrancy attacks, one should modify the code to use a mutex mechanism, such as the one provided by the ReentrancyGuard library. Additionally, one can add a mutex to prevent reentrancy by checking if the transfer function is already executing in the same callstack before updating the balance.
+
+Link to exploit : https://github.com/Sayrarh/Ethernaut-Challenge-with-Foundry/blob/master/src/Token.sol
