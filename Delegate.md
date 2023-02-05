@@ -36,7 +36,7 @@ contract Delegation {
 }
 ```
 #### CODE EXPLOITS
-The caller of the function "pwn()" will become the owner of the contract. This alone is not significant for us because we don’t need to gain ownership of this contract, but just keep it in mind for what’s coming next.
+The caller of the function "pwn()" will become the owner of the contract. 
 
 ```solidity
 function pwn() public {
