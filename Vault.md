@@ -104,3 +104,5 @@ await contract.unlock(password)
 //check the locked status
 await contract.locked();//false
 ```
+OR 
+Link to exploit: https://github.com/Sayrarh/Ethernaut-Challenge-with-Foundry/blob/master/test/Vault.t.sol
