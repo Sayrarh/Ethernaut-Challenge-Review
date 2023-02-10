@@ -75,18 +75,21 @@ What you should know about storage slot:
 - Items following struct or array data always start a new storage slot.
 
  
-##### Constant and Immutable Variables
+### Constant and Immutable Variables
 
 The compiler does not reserve a storage slot for both 'constant' and 'immutable' variables in Solidity as are known as "compile-time constants" and are replaced with their values at compile-time(for constant variable) and the value for an immutable variable is passed at construction time, before the contract is deployed to the blockchain.
 <br/>
 As a result, these variables do not require a storage slot and are not stored on the blockchain. This can result in a lower gas cost for contract execution, as there is no need to allocate storage for these variables.
 <br/>
- 
-bool 'locked'  will be at slot 0. The bool type takes 1 byte of storage, but because the next state variable takes the whole 32 bytes slot, we cannot pack locked with password.
 <br/>
-bytes32 password will take slot1. The bytes32 take the whole 32 bytes word.
+ 
+bool <b>'locked'</b>  will be at <b>slot 0</b>. The bool type takes 1 byte of storage, but because the next state variable takes the whole 32 bytes slot, we cannot pack locked with password.
+<br/>
+<br/>
+bytes32 <b>'password'</b> will take <b>slot1</b>. The bytes32 take the whole 32 bytes word.
 
-##### Solution
+
+### Solution
 On the console go through the following steps:
 
 
